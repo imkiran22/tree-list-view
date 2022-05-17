@@ -8,7 +8,7 @@ import {
 } from "./TreeList.types";
 import { Search } from "./Search";
 import { RenderField } from "./RenderField";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
 import { TreeListContext } from "./TreeListContext";
 
 export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
@@ -43,6 +43,34 @@ export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
     toggleAll(checked);
   };
 
+  const manipulateParentCheckboxState = (field: TreeField) => {
+    let parentField: TreeItem = {} as TreeItem;
+    const findParent = (
+      configuration: ITreeList | TreeField[],
+      parent?: TreeItem
+    ): any => {
+      for (let i = 0; i < configuration.length; i++) {
+        let config = configuration[i];
+        if (config.key === field.key) {
+          parentField = parent as TreeItem;
+          return;
+        }
+        if (config.fields?.length) {
+          findParent(config.fields, config as TreeItem);
+        }
+      }
+      return null;
+    };
+    findParent(configuration);
+    if (parentField && parentField.fields) {
+      const isSelectedAll = parentField.fields.every(
+        (field) => field.checked === true
+      );
+      parentField.checked = isSelectedAll;
+    }
+    return parentField;
+  };
+
   const onSelect = (field: TreeField, checked: boolean) => {
     const helper = (field: TreeField) => {
       field.checked = checked;
@@ -53,6 +81,10 @@ export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
       }
     };
     helper(field);
+    let parentField = manipulateParentCheckboxState(field);
+    while (!isEmpty(parentField)) {
+      parentField = manipulateParentCheckboxState(parentField);
+    }
     applyConfiguration(configuration);
   };
 
