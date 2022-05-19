@@ -1,12 +1,19 @@
 import React from "react";
+import { TreeListContext } from "../TreeListContext";
 import "./Search.scss";
 
-export const Search: React.FC<{ toggleSelectAll: Function }> = ({
-  toggleSelectAll
-}) => {
+export const Search: React.FC = () => {
   const [searchInput, setSearchInput] = React.useState("");
+  const { toggleSelectAll, search } = React.useContext(TreeListContext);
   const selectAll = (ev: React.ChangeEvent<HTMLInputElement>) => {
     toggleSelectAll(ev.target.checked);
+  };
+
+  //Implement debounce
+  const onChangeCallback = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const query = ev.target.value;
+    setSearchInput(query);
+    search(query);
   };
 
   return (
@@ -21,7 +28,7 @@ export const Search: React.FC<{ toggleSelectAll: Function }> = ({
         className="search"
         id="search"
         value={searchInput}
-        onChange={(ev) => setSearchInput(ev.target.value)}
+        onChange={onChangeCallback}
       />
     </div>
   );

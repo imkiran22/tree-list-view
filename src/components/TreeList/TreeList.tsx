@@ -8,14 +8,16 @@ import {
 } from "./TreeList.types";
 import { Search } from "./Search";
 import { RenderField } from "./RenderField";
-import _, { isEmpty } from "lodash";
+import { cloneDeep, isEmpty } from "lodash";
 import { TreeListContext } from "./TreeListContext";
+import { useTreeList } from "../hooks";
 
 export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
-  const [configuration, setConfiguration] = React.useState(config);
+  const [configuration, setConfiguration] = React.useState([...config]);
+  const { flattenedFields, applySearch } = useTreeList(config);
 
   const applyConfiguration = (configuration: ITreeList) => {
-    const revised = _.cloneDeep(configuration);
+    const revised = cloneDeep(configuration);
     setConfiguration(revised);
   };
 
@@ -88,10 +90,20 @@ export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
     applyConfiguration(configuration);
   };
 
+  const search = (query: string) => {
+    const str = query.toLowerCase();
+    if (str === "") {
+      applyConfiguration(config);
+    } else {
+      const searchedFields = applySearch(str.toLowerCase());
+      applyConfiguration(searchedFields);
+    }
+  };
+
   return (
-    <TreeListContext.Provider value={{ toggleSelectAll, onSelect }}>
+    <TreeListContext.Provider value={{ search, toggleSelectAll, onSelect }}>
       <div className="tree-list" data-test-id="tree-list">
-        <Search toggleSelectAll={toggleSelectAll} />
+        <Search />
         <div className="field-sections">
           <RenderField fields={configuration} />
         </div>

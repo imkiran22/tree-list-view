@@ -73,6 +73,11 @@ export const TreeListConfig: ITreeList = [
             name: "China",
             key: "china",
             checked: false
+          },
+          {
+            name: "Tazakishtan",
+            key: "tazakishtan",
+            checked: false
           }
         ]
       }
@@ -155,13 +160,25 @@ export const TreeListConfig: ITreeList = [
             name: "Current",
             key: "current",
             checked: false
+          },
+          {
+            name: "Tarzan",
+            key: "tarzan",
+            checked: false
           }
         ]
       },
       {
         name: "Extra Info 1",
         key: "extra_info_1",
-        checked: false
+        checked: false,
+        fields: [
+          {
+            name: "Tamarind",
+            key: "tamarind",
+            checked: false
+          }
+        ]
       }
     ]
   }
