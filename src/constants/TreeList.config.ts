@@ -125,6 +125,11 @@ export const TreeListConfig: ITreeList = [
                 checked: false
               }
             ]
+          },
+          {
+            name: "Crazy Taxi",
+            key: "crazy_taxi",
+            checked: false
           }
         ]
       }
@@ -144,7 +149,29 @@ export const TreeListConfig: ITreeList = [
           {
             name: "Loan EMI",
             key: "loan_emi",
-            checked: false
+            checked: false,
+            fields: [
+              {
+                name: "Bike Loan",
+                key: "bike_loan",
+                checked: false
+              },
+              {
+                name: "Gold Loan",
+                key: "gold_loan",
+                checked: false
+              },
+              {
+                name: "Car Loan",
+                key: "car_loan",
+                checked: false
+              },
+              {
+                name: "Home Loan",
+                key: "home_loan",
+                checked: false
+              }
+            ]
           },
           {
             name: "RD Balance",
@@ -176,6 +203,21 @@ export const TreeListConfig: ITreeList = [
           {
             name: "Tamarind",
             key: "tamarind",
+            checked: false
+          },
+          {
+            name: "Monkey",
+            key: "monkey",
+            checked: false
+          },
+          {
+            name: "Cobra",
+            key: "cobra",
+            checked: false
+          },
+          {
+            name: "Tiger",
+            key: "tiger",
             checked: false
           }
         ]
