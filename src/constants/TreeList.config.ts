@@ -130,6 +130,11 @@ export const TreeListConfig: ITreeList = [
             name: "Crazy Taxi",
             key: "crazy_taxi",
             checked: false
+          },
+          {
+            name: "Chillean Game",
+            key: "chillean_game",
+            checked: false
           }
         ]
       }

@@ -14,7 +14,8 @@ import { useTreeList } from "../hooks";
 
 export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
   const [configuration, setConfiguration] = React.useState([...config]);
-  const { flattenedFields, applySearch } = useTreeList(config);
+  const [selectedAll, setSelectedAll] = React.useState(false);
+  const { applySearch } = useTreeList(config);
 
   const applyConfiguration = (configuration: ITreeList) => {
     const revised = cloneDeep(configuration);
@@ -43,6 +44,7 @@ export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
 
   const toggleSelectAll = (checked: boolean) => {
     toggleAll(checked);
+    setSelectedAll(checked);
   };
 
   const manipulateParentCheckboxState = (field: TreeField) => {
@@ -101,7 +103,9 @@ export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
   };
 
   return (
-    <TreeListContext.Provider value={{ search, toggleSelectAll, onSelect }}>
+    <TreeListContext.Provider
+      value={{ search, toggleSelectAll, onSelect, selectedAll }}
+    >
       <div className="tree-list" data-test-id="tree-list">
         <Search />
         <div className="field-sections">

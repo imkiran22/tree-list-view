@@ -5,6 +5,7 @@ export interface TreeListContextType {
   onSelect: (field: TreeItem, checked: boolean) => void;
   toggleSelectAll: (checked: boolean) => void;
   search: (query: string) => void;
+  selectedAll: boolean;
 }
 
 export const TreeListContext = React.createContext<TreeListContextType>(

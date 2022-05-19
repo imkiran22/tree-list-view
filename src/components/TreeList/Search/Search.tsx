@@ -4,7 +4,9 @@ import "./Search.scss";
 
 export const Search: React.FC = () => {
   const [searchInput, setSearchInput] = React.useState("");
-  const { toggleSelectAll, search } = React.useContext(TreeListContext);
+  const { toggleSelectAll, search, selectedAll } = React.useContext(
+    TreeListContext
+  );
   const selectAll = (ev: React.ChangeEvent<HTMLInputElement>) => {
     toggleSelectAll(ev.target.checked);
   };
@@ -16,11 +18,18 @@ export const Search: React.FC = () => {
     search(query);
   };
 
+  const onKeyPress = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    if (ev.key === "Enter") {
+      toggleSelectAll(!selectedAll);
+    }
+  };
+
   return (
     <div className="search-tree-list" data-test-id="search-tree-list">
       <input
         type="checkbox"
         name="select-all"
+        checked={selectedAll}
         id="select-all"
         onChange={(ev) => selectAll(ev)}
       ></input>
@@ -28,6 +37,7 @@ export const Search: React.FC = () => {
         className="search"
         id="search"
         value={searchInput}
+        onKeyPress={onKeyPress}
         onChange={onChangeCallback}
       />
     </div>

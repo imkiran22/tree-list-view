@@ -1,4 +1,4 @@
-import { cloneDeep, findIndex, isEmpty, pick } from "lodash";
+import { cloneDeep, findIndex, includes, isEmpty, pick } from "lodash";
 import React from "react";
 
 function flattenFields(config) {
@@ -28,7 +28,8 @@ export const useTreeList = (config) => {
   const applySearch = (str: string) => {
     const validSearches = [];
     flattenedFields.forEach((field) => {
-      if (field.name.toLowerCase().startsWith(str)) {
+      const word = field.name.toLowerCase();
+      if (word.startsWith(str)) {
         validSearches.push(field);
       }
     });
