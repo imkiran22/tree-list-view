@@ -1,10 +1,9 @@
 .tree-list {
-    border: 1px solid darkgray;
     padding: 10px;
     margin: 2px;
     display: flex;
     flex-flow: row wrap;
-    /* justify-content: flex-start; */
+    overflow: auto;
     align-items: start;
   .section-field {
     display: flex;
@@ -14,6 +13,7 @@
 }
 
 .field-sections {
+  padding: 7px 0px;
   display: flex;
   flex-flow: column nowrap;
   flex-basis: 100%;
@@ -23,9 +23,13 @@
     flex-flow: column;
     display: inline-flex;
     align-items: start;
+    margin: 5px 0px;
     li {
       display: inline-flex;
       align-content: flex-start;
+      &:first-child {
+        margin-top: 5px;
+      }
     }
   }
 }

@@ -1,4 +1,3 @@
-import { isEmpty } from "lodash";
 import React from "react";
 import { Checkbox } from "../Checkbox";
 import { ITreeList, TreeField } from "../TreeList.types";
