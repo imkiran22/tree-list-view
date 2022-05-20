@@ -1,7 +1,11 @@
 .search-tree-list {
   display: inline-flex;
   align-self: center;
+  flex-basis: 100%;
+  padding: 2px 0px;
+  margin-bottom: 10px;
+    justify-content: center;
   .search {
-    width: 117px;
+    width: 75%;
   }
 }
