@@ -15,7 +15,7 @@ import { useTreeList } from "../hooks";
 export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
   const [configuration, setConfiguration] = React.useState([...config]);
   const [selectedAll, setSelectedAll] = React.useState(false);
-  const { applySearch } = useTreeList(config);
+  const { applySearch, flattenedFields } = useTreeList(config);
 
   const applyConfiguration = (configuration: ITreeList) => {
     const revised = cloneDeep(configuration);
@@ -104,7 +104,13 @@ export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
 
   return (
     <TreeListContext.Provider
-      value={{ search, toggleSelectAll, onSelect, selectedAll }}
+      value={{
+        search,
+        toggleSelectAll,
+        onSelect,
+        selectedAll,
+        flattenedFields
+      }}
     >
       <div className="tree-list" data-test-id="tree-list">
         <Search />

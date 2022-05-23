@@ -24,14 +24,23 @@
     display: inline-flex;
     align-items: start;
     margin: 5px 0px;
+    &:nth-child(2) {
+      margin-top: 10px;
+    }
     li {
       display: inline-flex;
       align-content: flex-start;
-      &:first-child {
-        margin-top: 5px;
+      &:nth-child(2) {
+       margin-top: 8px;
       }
     }
   }
 }
 
+// [draggable=true] {
+//   cursor: move;
+//   label {
+//     cursor: move;
+//   }
+// }
 

@@ -10,16 +10,16 @@ export const RenderChildren: React.FC<{ config: TreeField[] }> = ({
       {config.map((field) => {
         if (field.fields?.length) {
           return (
-            <ul className="ul" id={field.key} key={field.key}>
+            <ul draggable="true" className="ul" id={field.key} key={field.key}>
               <Checkbox field={field} key={field.key} />
               <RenderChildren config={field.fields} />
             </ul>
           );
         }
         return (
-          <ul className="ul" id={field.key} key={field.key}>
-            <li id={field.key}>
-              <Checkbox field={field} key={field.key} />
+          <ul draggable="true" className="ul" id={field.key} key={field.key}>
+            <li key={field.key}>
+              <Checkbox field={field} />
             </li>
           </ul>
         );
