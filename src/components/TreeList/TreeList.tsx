@@ -52,7 +52,7 @@ export const TreeList: React.FC<ITreeListConfig> = ({ config }) => {
     const findParent = (
       configuration: ITreeList | TreeField[],
       parent?: TreeItem
-    ): any => {
+    ) => {
       for (let i = 0; i < configuration.length; i++) {
         let config = configuration[i];
         if (config.key === field.key) {

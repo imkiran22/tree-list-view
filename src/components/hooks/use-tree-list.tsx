@@ -1,10 +1,10 @@
-import { cloneDeep, findIndex, includes, isEmpty, pick } from "lodash";
+import { cloneDeep, findIndex, isEmpty, pick } from "lodash";
 import React from "react";
 
-function flattenFields(config) {
-  const flatArr = [];
-  var recursive = (arr, parent = []) => {
-    arr.forEach((object) => {
+function flattenFields(config: any) {
+  const flatArr: any = [];
+  var recursive = (arr: any, parent = []) => {
+    arr.forEach((object: any) => {
       const newField: any = pick(object, ["name", "key"]);
       newField.parent = parent;
       flatArr.push(newField);
@@ -17,7 +17,7 @@ function flattenFields(config) {
   return flatArr;
 }
 
-export const useTreeList = (config) => {
+export const useTreeList = (config: any) => {
   const [flattenedFields, setFlattenedFields] = React.useState([]);
 
   React.useEffect(() => {
@@ -26,16 +26,16 @@ export const useTreeList = (config) => {
   }, [config]);
 
   const applySearch = (str: string) => {
-    const validSearches = [];
-    flattenedFields.forEach((field) => {
+    const validSearches: any = [];
+    flattenedFields.forEach((field: any) => {
       const word = field.name.toLowerCase();
       if (word.startsWith(str)) {
         validSearches.push(field);
       }
     });
     // console.log(validSearches);
-    const arr = [];
-    const helper = (arr, config, keys) => {
+    const arr: any = [];
+    const helper = (arr: any, config: any, keys: any) => {
       if (!keys.length) return;
       const key = keys.shift();
       let index = findIndex(arr, { key });
@@ -51,7 +51,7 @@ export const useTreeList = (config) => {
         helper(arr[index].fields, config[newIndex].fields, keys);
       }
     };
-    validSearches.forEach((searchedField) => {
+    validSearches.forEach((searchedField: any) => {
       const { key, parent } = searchedField;
       const keys = [...parent].concat(key);
       helper(arr, config, keys);

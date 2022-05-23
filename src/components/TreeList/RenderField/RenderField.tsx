@@ -7,7 +7,8 @@ export const RenderField: React.FC<{ fields: ITreeList }> = ({ fields }) => {
   const onDragStart = (ev: React.DragEvent<HTMLUListElement | unknown>) => {
     ev.dataTransfer.setData("text", (ev.target as Element).id);
     (ev.target as HTMLElement).style.opacity = "0.1";
-    (ev.target as Element).parentElement.style.backgroundColor = "aliceblue";
+    ((ev.target as Element)
+      .parentElement as HTMLElement).style.backgroundColor = "aliceblue";
   };
 
   const swap = (a: Element, b: Element) => {
@@ -34,8 +35,9 @@ export const RenderField: React.FC<{ fields: ITreeList }> = ({ fields }) => {
   };
 
   const onDragEnd = (ev: React.DragEvent<HTMLUListElement>) => {
-    ev.target.style.opacity = "1";
-    ev.target.parentElement.style.backgroundColor = "transparent";
+    (ev.target as HTMLElement).style.opacity = "1";
+    ((ev.target as Element)
+      .parentElement as HTMLElement).style.backgroundColor = "transparent";
   };
 
   return (
