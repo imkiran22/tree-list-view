@@ -8,7 +8,10 @@
   .search {
     width: 75%;
     border: none;
-    border-bottom: 3px solid teal;
+    border: 1px solid teal;
+    padding: 3px;
     outline: none;
+    margin-left: 10px;
+    height: 20px;
   }
 }
