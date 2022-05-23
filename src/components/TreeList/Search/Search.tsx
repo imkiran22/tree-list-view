@@ -39,6 +39,7 @@ export const Search: React.FC = () => {
         value={searchInput}
         onKeyPress={onKeyPress}
         onChange={onChangeCallback}
+        autoComplete="off"
       />
     </div>
   );
