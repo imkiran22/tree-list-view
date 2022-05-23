@@ -25,7 +25,7 @@ export const Checkbox: React.FC<{ field: TreeField }> = ({ field }) => {
         id={field.key}
         onChange={(ev) => {
           setState(ev.target.checked);
-          onSelect(field, ev.target.checked);
+          onSelect(field as any, ev.target.checked);
         }}
       ></input>
       {field.name}
