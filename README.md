@@ -1,2 +1,3 @@
 # tree-list-view
-Created with CodeSandbox
+
+A tree list view filter with searching and draggable sorting
