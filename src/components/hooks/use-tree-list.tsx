@@ -33,7 +33,7 @@ export const useTreeList = (config: any) => {
         validSearches.push(field);
       }
     });
-    // console.log(validSearches);
+
     const arr: any = [];
     const helper = (arr: any, config: any, keys: any) => {
       if (!keys.length) return;
@@ -56,7 +56,7 @@ export const useTreeList = (config: any) => {
       const keys = [...parent].concat(key);
       helper(arr, config, keys);
     });
-    // console.log(arr);
+
     return arr;
   };
 
